@@ -1,43 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_rev_params.c                                    :+:      :+:    :+:   */
+/*   ft_is_sort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbrandao <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/23 18:36:24 by mbrandao          #+#    #+#             */
-/*   Updated: 2023/09/23 18:40:20 by mbrandao         ###   ########.fr       */
+/*   Created: 2023/09/28 21:07:07 by mbrandao          #+#    #+#             */
+/*   Updated: 2023/09/28 21:07:08 by mbrandao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-
-void	ft_putchar(char c)
-{
-	write (1, &c, 1);
-}
-
-void	ft_putstr(char *str)
+int	ft_is_sort(int *tab, int length, int (*f)(int, int))
 {
 	int	i;
+	int	boole;
 
 	i = 0;
-	while (str[i] != 0)
+	boole = 1;
+	while (i < length - 1 && boole)
 	{
-		ft_putchar(str[i]);
+		if ((*f)(tab[i], tab [i + 1]) < 0)
+			boole = 0;
 		i++;
 	}
-}
-
-int	main(int argc, char *argv[])
-{
-	int	x;
-
-	x = argc - 1;
-	while (x > 0)
+	if (boole != 1)
 	{
-		ft_putstr(argv[x]);
-		ft_putchar('\n');
-		x--;
+		boole = 1;
+		i = 0;
+		while (i < length - 1)
+		{
+			if ((*f)(tab[i], tab[i + 1]) > 0)
+				return (0);
+			i++;
+		}
 	}
+	return (1);
 }

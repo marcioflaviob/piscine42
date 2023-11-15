@@ -1,43 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_rev_params.c                                    :+:      :+:    :+:   */
+/*   ft_foreach.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbrandao <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/23 18:36:24 by mbrandao          #+#    #+#             */
-/*   Updated: 2023/09/23 18:40:20 by mbrandao         ###   ########.fr       */
+/*   Created: 2023/09/28 14:34:55 by mbrandao          #+#    #+#             */
+/*   Updated: 2023/09/28 14:34:59 by mbrandao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include <stdio.h>
 
-void	ft_putchar(char c)
-{
-	write (1, &c, 1);
-}
-
-void	ft_putstr(char *str)
+void	ft_foreach(int *tab, int length, void (*f)(int))
 {
 	int	i;
 
 	i = 0;
-	while (str[i] != 0)
+	while (i < length)
 	{
-		ft_putchar(str[i]);
-		i++;
+		(*f)(tab[i++]);
 	}
 }
-
-int	main(int argc, char *argv[])
+/*
+int main(void)
 {
-	int	x;
-
-	x = argc - 1;
-	while (x > 0)
-	{
-		ft_putstr(argv[x]);
-		ft_putchar('\n');
-		x--;
-	}
-}
+    int tab[] = {123, 321, 456, 5341, 6, 46, 453};
+    ft_foreach(tab, 7, &ft_putnbr);
+}*/

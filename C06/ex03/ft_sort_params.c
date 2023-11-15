@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_rev_params.c                                    :+:      :+:    :+:   */
+/*   ft_sort_params.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbrandao <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/23 18:36:24 by mbrandao          #+#    #+#             */
-/*   Updated: 2023/09/23 18:40:20 by mbrandao         ###   ########.fr       */
+/*   Created: 2023/09/20 13:55:15 by mbrandao          #+#    #+#             */
+/*   Updated: 2023/09/20 13:55:31 by mbrandao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,50 @@ void	ft_putstr(char *str)
 	}
 }
 
-int	main(int argc, char *argv[])
+int	ft_strcmp(char *str, char *str2)
 {
-	int	x;
+	int	i;
+	int	size;
 
-	x = argc - 1;
-	while (x > 0)
+	i = 0;
+	size = 0;
+	while (str[i] == str2[i] && str[i] != '\0')
+		i++;
+	if (str[i] != str2[i])
+		size = ((int) str[i]) - ((int) str2[i]);
+	return (size);
+}
+
+void	ft_swap(char **ptr1, char **ptr2)
+{
+	char	*temp;
+
+	temp = *ptr1;
+	*ptr1 = *ptr2;
+	*ptr2 = temp;
+}
+
+int	main(int argc, char **argv)
+{
+	int	i;
+	int	j;
+
+	i = 1;
+	while (i < argc)
 	{
-		ft_putstr(argv[x]);
+		j = i + 1;
+		while (j < argc)
+		{
+			if (ft_strcmp(argv[i], argv[j]) > 0)
+				ft_swap(&argv[i], &argv[j]);
+			j++;
+		}
+		i++;
+	}
+	i = 1;
+	while (i < argc)
+	{
+		ft_putstr(argv[i++]);
 		ft_putchar('\n');
-		x--;
 	}
 }

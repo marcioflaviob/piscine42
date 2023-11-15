@@ -1,43 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_rev_params.c                                    :+:      :+:    :+:   */
+/*   ft_map.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbrandao <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/23 18:36:24 by mbrandao          #+#    #+#             */
-/*   Updated: 2023/09/23 18:40:20 by mbrandao         ###   ########.fr       */
+/*   Created: 2023/09/28 14:45:37 by mbrandao          #+#    #+#             */
+/*   Updated: 2023/09/28 14:45:39 by mbrandao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include <stdlib.h>
 
-void	ft_putchar(char c)
-{
-	write (1, &c, 1);
-}
-
-void	ft_putstr(char *str)
+int	*ft_map(int *tab, int length, int (*f)(int))
 {
 	int	i;
+	int	*res;
 
 	i = 0;
-	while (str[i] != 0)
+	res = malloc (length * sizeof(int));
+	while (i < length)
 	{
-		ft_putchar(str[i]);
+		res[i] = (*f)(tab[i]);
 		i++;
 	}
-}
-
-int	main(int argc, char *argv[])
-{
-	int	x;
-
-	x = argc - 1;
-	while (x > 0)
-	{
-		ft_putstr(argv[x]);
-		ft_putchar('\n');
-		x--;
-	}
+	return (res);
 }

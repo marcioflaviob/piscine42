@@ -1,43 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_rev_params.c                                    :+:      :+:    :+:   */
+/*   ft_any.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbrandao <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/23 18:36:24 by mbrandao          #+#    #+#             */
-/*   Updated: 2023/09/23 18:40:20 by mbrandao         ###   ########.fr       */
+/*   Created: 2023/09/28 14:58:16 by mbrandao          #+#    #+#             */
+/*   Updated: 2023/09/28 14:58:19 by mbrandao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include <stdio.h>
 
-void	ft_putchar(char c)
-{
-	write (1, &c, 1);
-}
-
-void	ft_putstr(char *str)
+int	ft_any(char **tab, int (*f)(char*))
 {
 	int	i;
 
 	i = 0;
-	while (str[i] != 0)
+	while (tab[i])
 	{
-		ft_putchar(str[i]);
+		if ((*f)(tab[i]) != 0)
+			return (1);
 		i++;
 	}
-}
-
-int	main(int argc, char *argv[])
-{
-	int	x;
-
-	x = argc - 1;
-	while (x > 0)
-	{
-		ft_putstr(argv[x]);
-		ft_putchar('\n');
-		x--;
-	}
+	return (0);
 }
