@@ -58,23 +58,26 @@ int	check_base(char *str)
 
 void	ft_putnbr_base(int nbr, char *base)
 {
-	int	base_size;
+	unsigned int	base_size;
+	unsigned int	n;
 
 	if (check_base(base) == 1)
 	{
-		base_size = str_len(base);
 		if (nbr < 0)
 		{
-			nbr = nbr * -1;
 			ft_putchar('-');
-		}
-		if (nbr > base_size)
-		{
-			ft_putnbr_base((nbr / base_size), base);
-			ft_putnbr_base((nbr % base_size), base);
+			n = nbr * -1;
 		}
 		else
-			ft_putchar(base[nbr]);
+			n = nbr;
+		base_size = str_len(base);
+		if (n > base_size)
+		{
+			ft_putnbr_base((n / base_size), base);
+			ft_putnbr_base((n % base_size), base);
+		}
+		else
+			ft_putchar(base[n]);
 	}
 }
 /*
@@ -83,9 +86,9 @@ int		main(void)
 	write(1, "42:", 3);
 	ft_putnbr_base(42, "0123456789");
 	write(1, "\n2a:", 4);
-	ft_putnbr_base(42, "0123456789abcdef");
+	ft_putnbr_base(2147483647, "0123456789abcdef");
 	write(1, "\n-2a:", 5);
-	ft_putnbr_base(-42, "0123456789abcdef");
+	ft_putnbr_base(-2147483648, "0123456789abcdef");
 	write(1, "\n:", 2);
 	ft_putnbr_base(42, "");
 	write(1, "\n:", 2);

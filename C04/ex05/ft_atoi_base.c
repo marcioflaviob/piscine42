@@ -65,10 +65,10 @@ int	power(int nb, int pow)
 	return (res);
 }
 
-int	last_while(int i, int j, char *str, char *base)
+unsigned int	last_while(int i, int j, char *str, char *base)
 {
-	int	res;
-	int	pow;
+	unsigned int	res;
+	int				pow;
 
 	res = 0;
 	pow = (str_len(str) - i) - 1;
@@ -105,8 +105,8 @@ int	ft_atoi_base(char *str, char *base)
 /*
 int	main(void)
 {
-	printf("42:%d\n", ft_atoi_base("2a", "0123456789abcdef"));
-	printf("-42:%d\n", ft_atoi_base("   --------+-2a", "0123456789abcdef"));
+	printf("42:%d\n", ft_atoi_base("7fffffff", "0123456789abcdef"));
+	printf("-42:%d\n", ft_atoi_base("   --------+-80000000", "0123456789abcdef"));
 	printf("42:%d\n", ft_atoi_base("   -+-2a", "0123456789abcdef"));
 	printf("0:%d\n", ft_atoi_base("   --------+- 2a", "0123456789abcdef"));
 	printf("0:%d\n", ft_atoi_base("   --------+-z", "0123456789abcdef"));
